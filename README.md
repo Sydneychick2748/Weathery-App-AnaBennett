@@ -5,16 +5,23 @@ Thank you for your interest in joining our Advanced Classes! Here are some of th
 ## Steps for admissions
 
 1. Complete returning student declaration form.
-2. Review resources to enhance skills that they identify may be missing based on learning objectives for the advanced modules that will be outlined in email and on declaration form
-3. Schedule and attend interview
-4. Complete assessment 
-5. Based on assessment outcome, utilize review resources to enhance skills that may be missing based on instructor feedback
-6. If accepted, complete all student admission forms (forms listed above)
-7. Attend advanced module orientation 
+2. Schedule and attend interview to start project.
+3. Review learning objectives and resources to enhance your skills based on new curriculum and technology updates.
+4. Begin project.
+5. Attend office hours, if needed.
+6. Complete project and schedule interview. First round of interviews need to be scheduled on or before October 2nd. 
+7. During the interview, you will be ask to explain your code in detail. Based on interview outcome, you may be asked to review and update code.
+8. If accepted, you will be asked to complete all student admission forms
+9. Attend advanced module orientation 
+
+## Other Notes
+1. You should have full access to Udemy and Frontend Masters. [Click here](https://anniecannons.udemy.com)
+2. Please reach out to the Student Success Coordinator, if you have any questions.
 
 ## Using this Repo
 
-1. Review the learningObjectives.md file for all of the topics that you should be familiar with before interviewing
-2. Utilize the resources in the resources.md files, if you need refreshers on the topics. 
-3. You should have full access to Udemy and Frontend Masters.
-4. Please reach out to the Career Development Manager, if you have any questions.
+1. Resources Folder
+- Review the learningObjectives.md file for all of the topics that you should be familiar with before interviewing
+- Utilize the resources in the resources.md files, if you need refreshers on the topics. 
+
+2. Project Folder
