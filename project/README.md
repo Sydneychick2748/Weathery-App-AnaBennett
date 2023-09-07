@@ -11,8 +11,8 @@ The purpose of this assignment is to give returning students a chance to assess 
 To complete this project, students will need to demonstrate skills in:
 
 - manipulating a user interface with the vanilla JS DOM API
-- making API calls with `fetch` 
-- laying out a user interface  with CSS Grid and CSS Flexbox
+- making API calls with `fetch`
+- laying out a user interface with CSS Grid and CSS Flexbox
 
 ## Rubric
 
@@ -28,13 +28,10 @@ The app meets all of the following user stories:
   - the low temperature
   - the chance of precipitation
   - the high, low, and chance of precipitation for each of the following 3 days
-- When the user submits a search, their previous searches are displayed under "Previous Searches."
-- When the user clicks a previous search, their search is run again.
 - The app have the following conditional features:
-    - The app will display "It's Hot Today!" if it is above 75 degrees.
-    - The app will display "It's Moderate Today!" if it is between 45 - 74 degrees.
-    - The app will display "It's Cold Today!" if it is below 45 degrees.
-
+  - The app will display "It's Hot Today!" if it is above 75 degrees.
+  - The app will display "It's Moderate Today!" if it is between 45 - 74 degrees.
+  - The app will display "It's Cold Today!" if it is below 45 degrees.
 
 ###### Functionality Stretch Goals
 
@@ -42,7 +39,7 @@ These are _not_ a requirement, but are given so that you have a way to push your
 
 - Add a background image or emojis to represent the current weather.
 - Add a drop-down for the user to choose Celsius or Fahrenheit temperatures, updating the display to match.
-- When a user repeats a search, either manually or by clicking a previous search, they do NOT see their search listed twice under Previous Searches.
+- When the user submits a search, that search and all previous searches are displayed under "Previous Searches." When the user clicks a previous search, that search is run again.
 
 #### Code Quality
 
