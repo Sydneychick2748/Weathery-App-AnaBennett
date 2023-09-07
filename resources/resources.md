@@ -12,7 +12,7 @@ Here are resources you can use:
 
 Here are resources you can use:
 
-1. [AnnieCannons Slides](https://www.canva.com/design/DAFl0KpjQzU/TkzQJROtboEZoeeW5Ykv_g/)
+1. [AnnieCannons Slides](https://www.canva.com/design/DAFl0KpjQzU/TkzQJROtboEZoeeW5Ykv_g/edit)
 2. [Git and Github Learning Resources](https://docs.github.com/en/get-started/quickstart/git-and-github-learning-resources)
 3. [Git exercises](https://coderefinery.github.io/git-intro/exercises/)
 4. [Github Course](https://anniecannons.udemy.com/course/git-and-github-bootcamp/)
@@ -23,7 +23,7 @@ Here are resources you can use:
 
 1. [FreeCodeCamp Responsive Web Design](https://www.freecodecamp.org/learn/2022/responsive-web-design/)
 2. [Structure of an HTML page](https://www.youtube.com/watch?v=90kC1YLNF3U&feature=youtu.be)
-3. [AnnieCannons HTML Slides](https://www.canva.com/design/DAFloBTAiWE/VvNgsHnApTDW_G4oqh4LJQ/)
+3. [AnnieCannons HTML Slides](https://www.canva.com/design/DAFloBTAiWE/VvNgsHnApTDW_G4oqh4LJQ/edit)
 4. [HTML Block vs Inline Elements](https://www.youtube.com/watch?v=XHjoohto2-w)
 5. [HTML Tags and Attributes](https://www.youtube.com/watch?v=vNOyRZIkC7o)
 6. [HTML Forms](https://www.youtube.com/watch?v=2O8pkybH6po)
@@ -34,7 +34,7 @@ Here are resources you can use:
 
 Here are resources you can use:
 
-1. [AnnieCannons CSS Slides](https://www.canva.com/design/DAFnIubtXC8/iFIr3Uf4Hlv4Tp80z_JLGA/)
+1. [AnnieCannons CSS Slides](https://www.canva.com/design/DAFnIubtXC8/iFIr3Uf4Hlv4Tp80z_JLGA/edit)
 2. [Frontend Masters Class: CSS](https://frontendmasters.com/courses/getting-started-css/)
 3. [CSS Property Value Pairs](https://www.youtube.com/watch?v=-GR52czEd-0)
 4. [Google Fonts](https://www.youtube.com/watch?v=eLY5KSXcQ6c)
@@ -51,7 +51,7 @@ Here are resources you can use:
 
 Here are resources you can use:
 
-1. [AnnieCannons Slides](https://www.canva.com/design/DAFpLgVyDB0/320DKN-frgCEf1f7RAm7cg/)
+1. [AnnieCannons Slides](https://www.canva.com/design/DAFpLgVyDB0/320DKN-frgCEf1f7RAm7cg/edit)
 2. [JavaScript: From First Steps to Professional](https://frontendmasters.com/courses/javascript-first-steps/)
 3. [Freecodecamp: Basic JavaScript](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/)
 4. [Coding Dojo: JS Practice](https://algorithm.codingdojo.com/)
