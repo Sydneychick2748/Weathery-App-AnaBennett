@@ -11,8 +11,8 @@ The purpose of this assignment is to give returning students a chance to assess 
 To complete this project, students will need to demonstrate skills in:
 
 - manipulating a user interface with the vanilla JS DOM API
-- making API calls with `fetch` 
-- laying out a user interface  with CSS Grid and CSS Flexbox
+- making API calls with `fetch`
+- laying out a user interface with CSS Grid and CSS Flexbox
 
 ## Rubric
 
@@ -29,10 +29,9 @@ The app meets all of the following user stories:
   - the chance of precipitation
   - the high, low, and chance of precipitation for each of the following 3 days
 - The app have the following conditional features:
-    - The app will display "It's Hot Today!" if it is above 75 degrees.
-    - The app will display "It's Moderate Today!" if it is between 45 - 74 degrees.
-    - The app will display "It's Cold Today!" if it is below 45 degrees.
-
+  - The app will display "It's Hot Today!" if it is above 75 degrees.
+  - The app will display "It's Moderate Today!" if it is between 45 - 74 degrees.
+  - The app will display "It's Cold Today!" if it is below 45 degrees.
 
 ###### Functionality Stretch Goals
 
