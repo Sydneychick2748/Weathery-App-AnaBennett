@@ -1,44 +1,42 @@
+/* Reset styles for the body */
 body {
+    margin: 0;
+}
+
+.ladingPageContainer {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
+    text-align: center;
     display: flex;
+    flex-direction: column; /* Stack elements in a column */
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-  }
-  
-  .container {
-    text-align: center;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px; /* Moved padding from body */
     border-radius: 8px;
-  }
-  
-  h1 {
-    font-size: 24px;
+}
+
+h1 {
+    font-size: 30px;
     margin-bottom: 10px;
-  }
-  
-  input {
-   
+}
+
+input {
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  button {
+}
+
+ #searchButton {
     background-color: #007BFF;
     color: #fff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 4px;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: #0056b3;
-  }
-  
+}
