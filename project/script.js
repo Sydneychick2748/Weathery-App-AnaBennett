@@ -18,16 +18,31 @@ inputCityName();
 
 async function getWeather(cityName) {
   try {
-    const response = await fetch(
+    // Fetch current weather data
+    const currentResponse = await fetch(
       `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${cityName}`
     );
 
-    if (response.ok) {
-      const data = await response.json();
-      console.log(data, "data");
+    if (currentResponse.ok) {
+      const data = await currentResponse.json();
+      console.log(data, "current data");
       displayWeather(data);
     } else {
-      console.error("Failed to fetch weather data");
+      console.error("Failed to fetch current weather data");
+    }
+
+    // Fetch forecast data from another API
+    const forecastResponse = await fetch(
+      `https://api.weatherapi.com/v1/forecast?key=${API_KEY}&q=${cityName}`
+    );
+    console.log(forecastResponse, "forecastResponse ");
+    console.log(forecastResponse.status); // Log the HTTP status code
+    if (forecastResponse.ok) {
+      const forecastData = await forecastResponse.json();
+      console.log(forecastData, "forecast data");
+        displayWeather(data);
+    } else {
+      console.error("Failed to fetch weather forecast data");
     }
   } catch (error) {
     console.error("An error occurred:", error);
@@ -45,6 +60,7 @@ function displayWeather(data) {
   const currentTemperature = data.current.temp_f;
   console.log(currentTemperature, "currentTemperature");
   const weatherIcon = data.current.condition.icon;
+  const iconUrl = `https:${weatherIcon}`;
   console.log(weatherIcon, "weatherIcon");
   const weatherMessage = data.current.condition.text;
   console.log(weatherMessage, "weatherMessage");
@@ -55,7 +71,8 @@ function displayWeather(data) {
         <p id="highTemp"></p>
         <p id="lowTemp"></p>
         <p id="precipitation"></p>
-        <p id="weatherWarningMessage">${weatherIcon}</p>
+        
+        <img src="${iconUrl}" alt="Weather Icon">
         <p id="textIcon">${weatherMessage}</p>
     `;
 
@@ -64,12 +81,15 @@ function displayWeather(data) {
   afterSearchWeather.innerHTML = weatherDataTemplate;
 
   const temperatureMessageElement = document.createElement("p");
-  if (currentTemperature > 75) {
-    temperatureMessageElement.textContent = "It's Hot Today!";
+  if (currentTemperature >= 75) {
+    temperatureMessageElement.textContent = "It's Hot Today ☀️🥵🌡 ";
+    temperatureMessageElement.classList.add("hot-message");
   } else if (currentTemperature >= 45 && currentTemperature <= 74) {
-    temperatureMessageElement.textContent = "It's Moderate Today!";
+    temperatureMessageElement.textContent = "It's Moderate Today🌻😎🌡";
+    temperatureMessageElement.classList.add("moderate-message");
   } else {
-    temperatureMessageElement.textContent = "It's Cold Today!";
+    temperatureMessageElement.textContent = "It's Cold Today ❄️🥶🌡";
+    temperatureMessageElement.classList.add("cold-message");
   }
   afterSearchWeather.appendChild(temperatureMessageElement);
 

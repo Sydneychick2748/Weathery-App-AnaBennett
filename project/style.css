@@ -4,7 +4,8 @@ body {
 
 .ladingPageContainer {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    
+   
     text-align: center;
     
 }
@@ -36,7 +37,8 @@ button:hover {
 
 /* Style for the weather information box */
 .afterSearchWeather {
-    background-color: #f0f0f0;
+    display: none;
+    background-color: #adbddd;
     border: 1px solid #ccc;
     padding: 20px;
     margin-top: 20px;
@@ -56,7 +58,7 @@ button:hover {
 #cityNameCountry,
 #weatherWarningMessage,
 #textIcon {
-    font-size: 16px;
+    font-size: 25px;
     margin-top: 10px;
 }
 
