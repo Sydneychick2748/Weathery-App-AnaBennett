@@ -1,4 +1,3 @@
-/* Reset styles for the body */
 body {
     margin: 0;
 }
@@ -7,13 +6,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     text-align: center;
-    display: flex;
-    flex-direction: column; /* Stack elements in a column */
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding: 20px; /* Moved padding from body */
-    border-radius: 8px;
+    
 }
 
 h1 {
@@ -28,7 +21,7 @@ input {
     border-radius: 4px;
 }
 
- #searchButton {
+#searchButton {
     background-color: #007BFF;
     color: #fff;
     border: none;
@@ -39,4 +32,38 @@ input {
 
 button:hover {
     background-color: #0056b3;
+}
+
+/* Style for the weather information box */
+.afterSearchWeather {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Style for the main temperature text */
+#currentTemp {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+/* Style for the smaller text below the main temperature */
+#cityNameCountry,
+#weatherWarningMessage,
+#textIcon {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* Style for making the elements inline after search */
+.inline-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Allow elements to wrap to the next line if needed */
 }
