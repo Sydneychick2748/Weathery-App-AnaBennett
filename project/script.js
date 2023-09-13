@@ -68,13 +68,15 @@ function displayWeather(data) {
   console.log(maxTemp, "maxTemp");
   const minTemp = data.forecast.forecastday[0].day.mintemp_f;
   console.log(minTemp, "minTemp");
+  const precipitation = data.forecast.forecastday[0].daily_chance_of_rain;
+  console.log(precipitation, "precipitation ");
 
   const weatherDataTemplate = `
         <h2 id="cityNameCountry">${cityName}, ${country}</h2>
         <p id="currentTemp">Current Temperature: ${currentTemperature}°F</p>
         <p id="highTemp">Max Temperature: ${maxTemp}°F</p>
         <p id="lowTemp">Min Temperature: ${minTemp}°F</p>
-        <p id="precipitation"></p>
+        <p id="precipitation">Chance of Precipitation: ${precipitation}</p>
         
         <img src="${iconUrl}" alt="Weather Icon">
         <p id="textIcon">${weatherMessage}</p>
