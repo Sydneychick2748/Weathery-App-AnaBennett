@@ -17,37 +17,37 @@ function inputCityName() {
 inputCityName();
 
 async function getWeather(cityName) {
-  try {
-    // Fetch current weather data
-    const currentResponse = await fetch(
-      `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${cityName}`
-    );
+  //   try {
+  //     // Fetch current weather data
+  //     const currentResponse = await fetch(
+  //       `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${cityName}`
+  //     );
 
-    if (currentResponse.ok) {
-      const data = await currentResponse.json();
-      console.log(data, "current data");
-      displayWeather(data);
-    } else {
-      console.error("Failed to fetch current weather data");
-    }
+  //     if (currentResponse.ok) {
+  //       const data = await currentResponse.json();
+  //       console.log(data, "current data");
+  //       displayWeather(data);
+  //     } else {
+  //       console.error("Failed to fetch current weather data");
+  //     }
 
-    // Fetch forecast data from another API
-    const forecastResponse = await fetch(
-      `https://api.weatherapi.com/v1/forecast?key=${API_KEY}&q=${cityName}`
-    );
-    console.log(forecastResponse, "forecastResponse ");
-    console.log(forecastResponse.status); // Log the HTTP status code
-    if (forecastResponse.ok) {
-      const forecastData = await forecastResponse.json();
-      console.log(forecastData, "forecast data");
-        displayWeather(data);
-    } else {
-      console.error("Failed to fetch weather forecast data");
-    }
-  } catch (error) {
-    console.error("An error occurred:", error);
+  // Fetch forecast data from another API
+  const forecastResponse = await fetch(
+    `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityName}`
+  );
+  console.log(forecastResponse, "forecastResponse ");
+  console.log(forecastResponse.status); // Log the HTTP status code
+  if (forecastResponse.ok) {
+    const data = await forecastResponse.json();
+    console.log(data, "forecast data");
+    displayWeather(data);
+  } else {
+    console.error("Failed to fetch weather forecast data");
   }
 }
+//   } catch (error) {
+//     console.error("An error occurred:", error);
+//   }
 
 function displayWeather(data) {
   if (!data) {
@@ -64,12 +64,16 @@ function displayWeather(data) {
   console.log(weatherIcon, "weatherIcon");
   const weatherMessage = data.current.condition.text;
   console.log(weatherMessage, "weatherMessage");
+  const maxTemp = data.forecast.forecastday[0].day.maxtemp_f;
+  console.log(maxTemp, "maxTemp");
+  const minTemp = data.forecast.forecastday[0].day.mintemp_f;
+  console.log(minTemp, "minTemp");
 
   const weatherDataTemplate = `
         <h2 id="cityNameCountry">${cityName}, ${country}</h2>
         <p id="currentTemp">Current Temperature: ${currentTemperature}°F</p>
-        <p id="highTemp"></p>
-        <p id="lowTemp"></p>
+        <p id="highTemp">Max Temperature: ${maxTemp}°F</p>
+        <p id="lowTemp">Min Temperature: ${minTemp}°F</p>
         <p id="precipitation"></p>
         
         <img src="${iconUrl}" alt="Weather Icon">
