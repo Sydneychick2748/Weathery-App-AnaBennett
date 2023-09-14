@@ -5,6 +5,7 @@ const afterSearchWeather = document.getElementById("afterSearchWeather");
 
 // Global variables
 let cityName,
+region,
   country,
   currentTemperature,
   weatherIcon,
@@ -27,6 +28,10 @@ function inputCityName() {
   });
 }
 
+ 
+//  `https://api.weatherapi.com/v1/future.json?key=81c688300b9f4a07b49194332231109&q=${cityName}&dt=${updateDate}`
+// ineedthe next 2 days of the forecast and the futre 2 days so this if you change the date will give me the future 2 days 
+
 // Initialize the event listener
 inputCityName();
 
@@ -36,6 +41,7 @@ async function getWeather(cityName) {
     //   const currentResponse = await fetch(
     //     `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${cityName}`
     //   );
+    
     //   console.log(currentResponse, "currentResponse ");
     //   console.log(currentResponse.status);
     //   if (currentResponse.ok) {
@@ -84,6 +90,8 @@ function displayForecastWeather(forecastData) {
   }
   cityName = forecastData.location.name;
   console.log(cityName, "cityName");
+  region = forecastData.location.region;
+  console.log(region, "region");
   country = forecastData.location.country;
   console.log(country, "country");
   currentTemperature = Math.floor(forecastData.current.temp_f);
@@ -102,7 +110,8 @@ function displayForecastWeather(forecastData) {
 
   // Create the weather data template
   const weatherDataTemplate = `
-        <h2 id="cityNameCountry">${cityName}, ${country}</h2>
+        <h2 id="cityNameCountry">${cityName}, ${region}</h2>
+        <h4 id="cityNameCountry">${country}</h4>
         <p id="currentTemp">Current Temperature: ${currentTemperature}°F</p>
         <img src="${iconUrl}" alt="Weather Icon">
         <p id="textIcon">${weatherMessage}</p>
