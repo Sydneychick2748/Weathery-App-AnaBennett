@@ -1,91 +1,122 @@
-// Keep the same variable and function names
+// HTML elements
 const searchButton = document.getElementById("searchButton");
 const cityInput = document.getElementById("cityInput");
 const afterSearchWeather = document.getElementById("afterSearchWeather");
 
+// Global variables
+let cityName,
+  country,
+  currentTemperature,
+  weatherIcon,
+  iconUrl,
+  weatherMessage,
+  maxTemp,
+  minTemp,
+  precipitation;
+
+// API Key
 const API_KEY = "81c688300b9f4a07b49194332231109";
 
+// Event listener for the search button
 function inputCityName() {
   searchButton.addEventListener("click", function () {
     console.log("Button clicked");
-    const cityName = cityInput.value;
-    console.log("City Name:", cityName);
-    getWeather(cityName);
+    const cityNameValue = cityInput.value;
+    console.log("City Name:", cityNameValue);
+    getWeather(cityNameValue);
   });
 }
 
+// Initialize the event listener
 inputCityName();
 
+// Function to fetch weather data
 async function getWeather(cityName) {
-  //   try {
-  //     // Fetch current weather data
-  //     const currentResponse = await fetch(
-  //       `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${cityName}`
-  //     );
+  try {
+    //   const currentResponse = await fetch(
+    //     `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${cityName}`
+    //   );
+    //   console.log(currentResponse, "currentResponse ");
+    //   console.log(currentResponse.status);
+    //   if (currentResponse.ok) {
+    //     const currentData = await currentResponse.json();
+    //     console.log(currentData, "currentdata");
+    //     displayCurrentWeather(currentData);
+    //   } else {
+    //     console.error("Failed to fetch current weather data");
+    //   }
 
-  //     if (currentResponse.ok) {
-  //       const data = await currentResponse.json();
-  //       console.log(data, "current data");
-  //       displayWeather(data);
-  //     } else {
-  //       console.error("Failed to fetch current weather data");
-  //     }
-
-  // Fetch forecast data from another API
-  const forecastResponse = await fetch(
-    `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityName}`
-  );
-  console.log(forecastResponse, "forecastResponse ");
-  console.log(forecastResponse.status); // Log the HTTP status code
-  if (forecastResponse.ok) {
-    const data = await forecastResponse.json();
-    console.log(data, "forecast data");
-    displayWeather(data);
-  } else {
-    console.error("Failed to fetch weather forecast data");
+    // Fetch forecast data from another API
+    const forecastResponse = await fetch(
+      `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityName}`
+    );
+    console.log(forecastResponse, "forecastResponse ");
+    console.log(forecastResponse.status); // Log the HTTP status code
+    if (forecastResponse.ok) {
+      const forecastData = await forecastResponse.json();
+      console.log(forecastData, "forecastData");
+      displayForecastWeather(forecastData);
+    } else {
+      console.error("Failed to fetch weather forecast data");
+    }
+  } catch (error) {
+    console.error("An error occurred:", error);
   }
 }
-//   } catch (error) {
-//     console.error("An error occurred:", error);
-//   }
 
-function displayWeather(data) {
-  if (!data) {
+// Function to display current weather
+// function displayCurrentWeather(currentData) {
+//   if (!currentData) {
+//     return;
+//   }
+//   cityName = currentData.location.name;
+//   console.log(cityName, "cityName");
+//   country = currentData.location.country;
+//   console.log(country, "country");
+//   currentTemperature = Math.floor(currentData.current.temp_f);
+//   console.log(currentTemperature, "currentTemperature");
+// }
+
+// Function to display forecast weather
+function displayForecastWeather(forecastData) {
+  if (!forecastData) {
     return;
   }
-  const cityName = data.location.name;
+  cityName = forecastData.location.name;
   console.log(cityName, "cityName");
-  const country = data.location.country;
+  country = forecastData.location.country;
   console.log(country, "country");
-  const currentTemperature = data.current.temp_f;
+  currentTemperature = Math.floor(forecastData.current.temp_f);
   console.log(currentTemperature, "currentTemperature");
-  const weatherIcon = data.current.condition.icon;
-  const iconUrl = `https:${weatherIcon}`;
+  weatherIcon = forecastData.current.condition.icon;
+  iconUrl = `https:${weatherIcon}`;
   console.log(weatherIcon, "weatherIcon");
-  const weatherMessage = data.current.condition.text;
+  weatherMessage = forecastData.current.condition.text;
   console.log(weatherMessage, "weatherMessage");
-  const maxTemp = data.forecast.forecastday[0].day.maxtemp_f;
+  maxTemp = Math.floor(forecastData.forecast.forecastday[0].day.maxtemp_f);
   console.log(maxTemp, "maxTemp");
-  const minTemp = data.forecast.forecastday[0].day.mintemp_f;
+  minTemp = Math.floor(forecastData.forecast.forecastday[0].day.mintemp_f);
   console.log(minTemp, "minTemp");
-  const precipitation = data.forecast.forecastday[0].daily_chance_of_rain;
+  precipitation = forecastData.forecast.forecastday[0].day.daily_chance_of_rain;
   console.log(precipitation, "precipitation ");
 
+  // Create the weather data template
   const weatherDataTemplate = `
         <h2 id="cityNameCountry">${cityName}, ${country}</h2>
         <p id="currentTemp">Current Temperature: ${currentTemperature}°F</p>
-        <p id="highTemp">Max Temperature: ${maxTemp}°F</p>
-        <p id="lowTemp">Min Temperature: ${minTemp}°F</p>
-        <p id="precipitation">Chance of Precipitation: ${precipitation}</p>
-        
         <img src="${iconUrl}" alt="Weather Icon">
         <p id="textIcon">${weatherMessage}</p>
+        <p id="highTemp">Today's High: ${maxTemp}°F</p>
+        <p id="lowTemp"> Today's Low: ${minTemp}°F</p>
+        <p id="precipitation">Chance of Precipitation: ${precipitation}%</p>
     `;
 
   console.log(weatherDataTemplate, "weatherDataTemplate");
 
+  // Display the weather data
   afterSearchWeather.innerHTML = weatherDataTemplate;
 
+  // Create and display temperature message element
   const temperatureMessageElement = document.createElement("p");
   if (currentTemperature >= 75) {
     temperatureMessageElement.textContent = "It's Hot Today ☀️🥵🌡 ";
