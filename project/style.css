@@ -1,13 +1,7 @@
 body {
     margin: 0;
-}
-
-.ladingPageContainer {
     font-family: Arial, sans-serif;
-    
-   
     text-align: center;
-    
 }
 
 h1 {
@@ -35,26 +29,22 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Style for the weather information box */
-.afterSearchWeather {
+/* Styles for the main weather display and temperature messages */
+#afterSearchWeather {
     display: none;
-    background-color: #adbddd;
-    border: 1px solid #ccc;
+    background-color: #7783c1;
     padding: 20px;
-    margin-top: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
     text-align: center;
     max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-/* Style for the main temperature text */
 #currentTemp {
     font-size: 36px;
     font-weight: bold;
 }
 
-/* Style for the smaller text below the main temperature */
 #cityNameCountry,
 #weatherWarningMessage,
 #textIcon {
@@ -62,10 +52,53 @@ button:hover {
     margin-top: 10px;
 }
 
-/* Style for making the elements inline after search */
-.inline-container {
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap; /* Allow elements to wrap to the next line if needed */
+/* Styles for the future weather boxes */
+.future-day {
+    background-color: #7783c1;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px auto;
+    text-align: center;
+    max-width: 200px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
 }
+
+/* Styles for temperature message colors */
+.hot-message {
+    color: #ff6347;
+}
+
+.moderate-message {
+    color: #ffd700;
+}
+
+.cold-message {
+    color: #4169e1;
+}
+
+#weatherContainer {
+    display: none; /* Initially hide the weather container */
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Styles for the parent container of future weather boxes */
+#futureWeatherContainer {
+    display: flex; /* Use flexbox to arrange items in a row */
+    flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+    justify-content: center; /* Center the items horizontally */
+}
+
+/* Styles for the future weather boxes */
+.future-day {
+    background-color: #7783c1;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    text-align: center;
+    max-width: 200px;
+}
+

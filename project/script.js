@@ -28,17 +28,14 @@ function inputCityName() {
   });
 }
 
-//  `https://api.weatherapi.com/v1/future.json?key=81c688300b9f4a07b49194332231109&q=${cityName}&dt=${updateDate}`
-// ineedthe next 2 days of the forecast and the futre 2 days so this if you change the date will give me the future 2 days
-
-// Initialize the event listener
+// Call the function to register the event listener
 inputCityName();
 
 // Function to fetch weather data
 async function getWeather(cityName) {
   try {
     const forecastResponse = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityName}`
+      `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityName}&days=4`
     );
     console.log(forecastResponse, "forecastResponse ");
     console.log(forecastResponse.status); // Log the HTTP status code
@@ -48,57 +45,14 @@ async function getWeather(cityName) {
       displayForecastWeather(forecastData);
     } else {
       console.error("Failed to fetch weather forecast data");
-    }
-
-    // lets get the date for the api
-    // Define the number of days in the future you want to retrieve
-    const numberOfDays = 2;
-
-    // Create an array to store the dates
-    const futureDates = [];
-
-    // Get the current date and time
-    const currentDate = new Date();
-    console.log(currentDate, "currentDate");
-
-    for (let i = 1; i <= numberOfDays; i++) {
-      // Clone the current date to futureDate
-      const futureDate = new Date(currentDate);
-
-      // Calculate the future date by adding 'i' days to futureDate
-      futureDate.setDate(futureDate.getDate() + i);
-
-      // Format the date to YYYY-MM-DD
-      const formattedFutureDate = futureDate.toISOString().split("T")[0];
-      console.log(formattedFutureDate, "formattedFutureDate");
-
-      // Push the formatted future date to the futureDates array
-      futureDates.push(formattedFutureDate);
-
-      // Fetch weather data for each future date using forEach
-      try {
-        const futureResponse = await fetch(
-          `https://api.weatherapi.com/v1/future.json?key=${API_KEY}&q=${cityName}&dt=${formattedFutureDate}`
-        );
-        console.log(
-          `URL for future weather data: https://api.weatherapi.com/v1/future.json?key=${API_KEY}&q=${cityName}&dt=${formattedFutureDate}`
-        );
-
-        console.log(futureResponse, "futureResponse ");
-        console.log(futureResponse.status); // Log the HTTP status code
-        if (futureResponse.ok) {
-          const futureData = await futureResponse.json();
-          console.log(futureData, "futureData");
-          displayFutureWeather(futureData);
-        } else {
-          console.error("Failed to fetch future 2-day forecast data");
-        }
-      } catch (error) {
-        console.error("An error occurred:", error);
-      }
+      // Display an error message on the page
+      afterSearchWeather.innerHTML =
+        "<p>Error: Unable to fetch weather data</p>";
     }
   } catch (error) {
     console.error("An error occurred:", error);
+    // Display an error message on the page
+    afterSearchWeather.innerHTML = "<p>An error occurred</p>";
   }
 }
 
@@ -126,6 +80,10 @@ function displayForecastWeather(forecastData) {
   console.log(minTemp, "minTemp");
   precipitation = forecastData.forecast.forecastday[0].day.daily_chance_of_rain;
   console.log(precipitation, "precipitation ");
+
+  // Show the weather container when you have the data
+  document.getElementById("weatherContainer").style.display = "block";
+
 
   // Create the weather data template
   const weatherDataTemplate = `
@@ -157,13 +115,49 @@ function displayForecastWeather(forecastData) {
     temperatureMessageElement.classList.add("cold-message");
   }
   afterSearchWeather.appendChild(temperatureMessageElement);
+  displayFutureWeather(forecastData);
 
   afterSearchWeather.style.display = "block";
 }
 
 // Function to display future 2-day weather
-function displayFutureWeather(futureData) {
-  // Access and display the data for the next 2 days from futureData
-  // You can format the display as per your requirements
-  console.log("Future 2-Day Forecast Data:", futureData);
+function displayFutureWeather(forecastData) {
+  // Get the next 3 days of weather forecast
+  const forecastDays = forecastData.forecast.forecastday;
+  const nextThreeDays = forecastDays.slice(1, 4); // Change the slice to get the next 3 days
+
+  // Loop through the next 2 days and display the weather information
+  nextThreeDays.forEach((day, index) => {
+    const date = new Date(day.date);
+    const dayOfWeek = date.toLocaleDateString("en-US", { weekday: "long" });
+    const averageTemp = Math.floor(day.day.avgtemp_f);
+
+    const maxTemp = Math.floor(day.day.maxtemp_f);
+    const minTemp = Math.floor(day.day.mintemp_f);
+    const precipitation = day.day.daily_chance_of_rain;
+
+    // Create the template for each day
+    const dayTemplate = `
+      <div class="future-day">
+        <h3>${dayOfWeek}</h3>
+        <h3>${averageTemp}°F</h3>
+        <p>High: ${maxTemp}°F</p>
+        <p>Low: ${minTemp}°F</p>
+        <p>Chance of Precipitation: ${precipitation}%</p>
+      </div>
+    `;
+    // Append the day's template to the container
+    const dayElement = document
+      .createRange()
+      .createContextualFragment(dayTemplate);
+    dayElement.querySelector(".future-day").classList.add("custom-class"); // Add a custom class
+    futureWeatherContainer.appendChild(dayElement);
+
+    // Log the data for each day
+    console.log(`Day ${index + 1} (${dayOfWeek}):`);
+     console.log(`averageTemp : ${averageTemp}°F`);
+    console.log(`High Temperature: ${maxTemp}°F`);
+    console.log(`Low Temperature: ${minTemp}°F`);
+    console.log(`Chance of Precipitation: ${precipitation}%`);
+  });
 }
