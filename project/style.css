@@ -52,18 +52,33 @@ button:hover {
     margin-top: 10px;
 }
 
+/* Styles for the weather container */
+#weatherContainer {
+    display: none; /* Initially hide the weather container */
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Styles for the parent container of future weather boxes */
+#futureWeatherContainer {
+    display: flex; /* Use flexbox to arrange items in a row */
+    justify-content: center; /* Center the items horizontally */
+    
+}
+
 /* Styles for the future weather boxes */
 .future-day {
     background-color: #7783c1;
-    padding: 10px;
+    /* padding: 10px; */
     border-radius: 10px;
-    margin: 10px auto;
-    text-align: center;
-    max-width: 200px;
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 20px;
+    margin-right: 10px;
+    /* text-align: center; */
+    /* max-width: 250px; */
+    padding-left: 60px;
+    padding-right: 60px;
 }
+
 
 /* Styles for temperature message colors */
 .hot-message {
@@ -78,27 +93,14 @@ button:hover {
     color: #4169e1;
 }
 
-#weatherContainer {
-    display: none; /* Initially hide the weather container */
-    text-align: center;
-    max-width: 400px;
-    margin: 0 auto;
-}
+/* Media query for small screens to wrap the future weather boxes */
+@media (max-width: 768px) {
+    #futureWeatherContainer {
+        flex-wrap: wrap; /* Wrap the items for small screens */
+    }
 
-/* Styles for the parent container of future weather boxes */
-#futureWeatherContainer {
-    display: flex; /* Use flexbox to arrange items in a row */
-    flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
-    justify-content: center; /* Center the items horizontally */
+    .future-day {
+        margin-right: 0; /* Remove right margin for wrapped items */
+        margin-bottom: 10px; /* Add bottom margin for wrapped items */
+    }
 }
-
-/* Styles for the future weather boxes */
-.future-day {
-    background-color: #7783c1;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 10px;
-    text-align: center;
-    max-width: 200px;
-}
-

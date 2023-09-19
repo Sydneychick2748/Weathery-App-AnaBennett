@@ -84,7 +84,6 @@ function displayForecastWeather(forecastData) {
   // Show the weather container when you have the data
   document.getElementById("weatherContainer").style.display = "block";
 
-
   // Create the weather data template
   const weatherDataTemplate = `
         <h2 id="cityNameCountry">${cityName}, ${region}</h2>
@@ -124,14 +123,36 @@ function displayForecastWeather(forecastData) {
 function displayFutureWeather(forecastData) {
   // Get the next 3 days of weather forecast
   const forecastDays = forecastData.forecast.forecastday;
-  const nextThreeDays = forecastDays.slice(1, 4); // Change the slice to get the next 3 days
+  const nextThreeDays = forecastDays.slice(0, 3); // Change the slice to get the next 3 days
+  // Create an array of day names to use as titles
+  
+// Create an array of day names to use as titles for the remaining days
+const dayNames = [
+  new Date().toLocaleDateString("en-US", { weekday: "long" }), // Today
+  new Date(forecastDays[1].date).toLocaleDateString("en-US", { weekday: "long" }), // Tomorrow
+  new Date(forecastDays[2].date).toLocaleDateString("en-US", { weekday: "long" }) // Day After Tomorrow
+];
 
-  // Loop through the next 2 days and display the weather information
-  nextThreeDays.forEach((day, index) => {
-    const date = new Date(day.date);
-    const dayOfWeek = date.toLocaleDateString("en-US", { weekday: "long" });
-    const averageTemp = Math.floor(day.day.avgtemp_f);
+// Set a separate variable for the title of the first day
+const firstDayTitle = 'Today';
 
+
+
+
+ 
+nextThreeDays.forEach((day, index) => {
+  const date = new Date(day.date);
+  let dayOfWeek;
+
+  if (index === 0) {
+    dayOfWeek = firstDayTitle; // Use "Today" for the first day
+  } else {
+    dayOfWeek = dayNames[index]; // Use the day of the week for other days
+  }
+
+
+    // const averageTemp = Math.floor(day.day.avgtemp_f);
+    const highOfTheDay = Math.floor(day.day.maxtemp_f);
     const maxTemp = Math.floor(day.day.maxtemp_f);
     const minTemp = Math.floor(day.day.mintemp_f);
     const precipitation = day.day.daily_chance_of_rain;
@@ -140,7 +161,7 @@ function displayFutureWeather(forecastData) {
     const dayTemplate = `
       <div class="future-day">
         <h3>${dayOfWeek}</h3>
-        <h3>${averageTemp}°F</h3>
+        <h3>${highOfTheDay}°F</h3>
         <p>High: ${maxTemp}°F</p>
         <p>Low: ${minTemp}°F</p>
         <p>Chance of Precipitation: ${precipitation}%</p>
@@ -153,11 +174,6 @@ function displayFutureWeather(forecastData) {
     dayElement.querySelector(".future-day").classList.add("custom-class"); // Add a custom class
     futureWeatherContainer.appendChild(dayElement);
 
-    // Log the data for each day
-    console.log(`Day ${index + 1} (${dayOfWeek}):`);
-     console.log(`averageTemp : ${averageTemp}°F`);
-    console.log(`High Temperature: ${maxTemp}°F`);
-    console.log(`Low Temperature: ${minTemp}°F`);
-    console.log(`Chance of Precipitation: ${precipitation}%`);
+    
   });
 }
