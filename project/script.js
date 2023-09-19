@@ -35,7 +35,7 @@ inputCityName();
 async function getWeather(cityName) {
   try {
     const forecastResponse = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityName}&days=4`
+      `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityName}&days=3`
     );
     console.log(forecastResponse, "forecastResponse ");
     console.log(forecastResponse.status); // Log the HTTP status code
@@ -119,61 +119,36 @@ function displayForecastWeather(forecastData) {
   afterSearchWeather.style.display = "block";
 }
 
-// Function to display future 2-day weather
+// Function to display future 3-day weather
 function displayFutureWeather(forecastData) {
   // Get the next 3 days of weather forecast
-  const forecastDays = forecastData.forecast.forecastday;
-  const nextThreeDays = forecastDays.slice(0, 3); // Change the slice to get the next 3 days
-  // Create an array of day names to use as titles
-  
-// Create an array of day names to use as titles for the remaining days
-const dayNames = [
-  new Date().toLocaleDateString("en-US", { weekday: "long" }), // Today
-  new Date(forecastDays[1].date).toLocaleDateString("en-US", { weekday: "long" }), // Tomorrow
-  new Date(forecastDays[2].date).toLocaleDateString("en-US", { weekday: "long" }) // Day After Tomorrow
-];
+  const forecastDays = forecastData.forecast.forecastday.slice(0, 3);
 
-// Set a separate variable for the title of the first day
-const firstDayTitle = 'Today';
+  // Select the container where we'll display the weather information
+  const futureWeatherContainer = document.getElementById(
+    "futureWeatherContainer"
+  );
 
-
-
-
- 
-nextThreeDays.forEach((day, index) => {
-  const date = new Date(day.date);
-  let dayOfWeek;
-
-  if (index === 0) {
-    dayOfWeek = firstDayTitle; // Use "Today" for the first day
-  } else {
-    dayOfWeek = dayNames[index]; // Use the day of the week for other days
-  }
-
-
-    // const averageTemp = Math.floor(day.day.avgtemp_f);
+  // Loop through the next 3 days and display the weather information
+  forecastDays.forEach((day, index) => {
+    const formattedDate = day.date; // Get the date directly from the API response
     const highOfTheDay = Math.floor(day.day.maxtemp_f);
     const maxTemp = Math.floor(day.day.maxtemp_f);
     const minTemp = Math.floor(day.day.mintemp_f);
     const precipitation = day.day.daily_chance_of_rain;
 
     // Create the template for each day
-    const dayTemplate = `
-      <div class="future-day">
-        <h3>${dayOfWeek}</h3>
-        <h3>${highOfTheDay}°F</h3>
-        <p>High: ${maxTemp}°F</p>
-        <p>Low: ${minTemp}°F</p>
-        <p>Chance of Precipitation: ${precipitation}%</p>
-      </div>
-    `;
-    // Append the day's template to the container
-    const dayElement = document
-      .createRange()
-      .createContextualFragment(dayTemplate);
-    dayElement.querySelector(".future-day").classList.add("custom-class"); // Add a custom class
-    futureWeatherContainer.appendChild(dayElement);
+    const dayElement = document.createElement("div");
+    dayElement.classList.add("future-day");
+    dayElement.innerHTML = `
+    <h3>${formattedDate}</h3>
+    <h3>${highOfTheDay}°F</h3>
+    <p>High: ${maxTemp}°F</p>
+    <p>Low: ${minTemp}°F</p>
+    <p>Chance of Precipitation: ${precipitation}%</p>
+  `;
 
-    
+    // Append the day's template to the container
+    futureWeatherContainer.appendChild(dayElement);
   });
 }
