@@ -93,10 +93,23 @@ button:hover {
     color: #4169e1;
 }
 
+#displayHottestDay {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff6347; /* Red color for emphasis */
+    margin-top: 20px;
+    padding: 10px; /* Add padding to create spacing around the text */
+}
+
 /* Media query for small screens to wrap the future weather boxes */
 @media (max-width: 768px) {
     #futureWeatherContainer {
         flex-wrap: wrap; /* Wrap the items for small screens */
+
+    }
+    #afterSearchWeather {
+        max-width: 300px; /* Reduce maximum width for small screens */
+        padding: 10px; /* Adjust padding for smaller screens */
     }
 
     .future-day {
